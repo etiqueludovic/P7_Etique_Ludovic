@@ -1,0 +1,19 @@
+.log {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width: 350px;
+    background:white;
+}
+
+.log-nav {
+    max-width: 100%;
+}
+
+.form-floating {
+    margin:15px;
+}
+
+.btn-danger, .btn-success {
+    margin: 10px;
+}

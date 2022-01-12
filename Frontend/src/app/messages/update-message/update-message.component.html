@@ -1,0 +1,49 @@
+<div class="rocol-sm-offset-">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <li class="list-group-item">
+            <label for="Title">Titre</label>
+            <input type="text" class="form-control" [(ngModel)]="title" name="title" required>
+            <label for="Message">Message</label>
+            <input type="text" class="form-control" [(ngModel)]="content" name="content" required>
+        </li>
+        <div class="container">
+            <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3>Choose File</h3>            
+            <div class="form-group">
+                <input type="file" name="file" (change)="fileProgress($event)" />
+            </div>
+            <div *ngIf="fileUploadProgress">
+                Upload progress: {{ fileUploadProgress }}
+            </div>
+            <!--<div class="image-preview mb-3" *ngIf="previewUrl">
+                <img [src]="previewUrl" height="300" />                 
+            </div>-->
+ 
+            <div class="mb-3" *ngIf="uploadedFilePath">
+                {{uploadedFilePath}}
+            </div>
+        </div>
+              
+    </div>
+</div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+    
+            <label for="PreviousMessage">Prévisualisation du Message</label>
+        <mat-card > 
+            <mat-card-header *ngFor="let dataPost of Posts">{{dataPost.username}}</mat-card-header>
+            <mat-card-header class="mat-card-header" name="PreviousMessage">{{ title }}</mat-card-header>
+            <div class="mat-card-image" *ngIf="previewUrl">
+                <img [src]="previewUrl" height="300" />                 
+            </div>  
+            <mat-card-content class="mat-card-content">{{ content }}</mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
+
+
+  

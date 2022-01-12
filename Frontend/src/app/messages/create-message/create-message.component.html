@@ -1,0 +1,48 @@
+<div class="rocol-sm-offset">
+    <div class="col-sm-8 col-sm-offset-2 complet">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <li class="list-group-item">
+            <label for="Title">Titre</label>
+            <input type="text" class="form-control" [(ngModel)]="title" name="title" required>
+            <label for="Message">Message</label>
+            <textarea type="text" class="form-control" [(ngModel)]="content" name="content" required></textarea>
+            <button (click) ="toggleEmojiPicker()">😀</button><br>
+        <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Choisissez votre emoji…"> </emoji-mart>
+        </li>
+        <div class="container">
+            <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3>Insérer une image</h3>            
+            <div class="form-group">
+                <input type="file" name="file" (change)="fileProgress($event)" />
+            </div>
+            <div *ngIf="fileUploadProgress">
+                Upload progress: {{ fileUploadProgress }}
+            </div>
+ 
+            <div class="mb-3" *ngIf="uploadedFilePath">
+                {{uploadedFilePath}}
+            </div>
+        </div>
+              
+    </div>
+</div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+            <div  class="prevlib" >
+                 <label for="PreviousTitre">Prévisualisation du Message</label>
+            </div>
+        <div class="prev">
+            <div class="text-center prevtitre">
+                <div mat-card-avatar class="example-header-image"></div>
+                <div class="text-center" name="PreviousTitre">{{ title }}</div>
+                <div class="text-center" name="PreviousTitre" *ngIf="username">{{ username }}</div>
+            </div>
+                <img [src]="previewUrl" height="300" />  
+                <div class="image-preview mb-3" *ngIf="previewUrl"></div>
+                <div class="text-center" name="PreviousMessage">{{ content }}</div>
+                
+        </div>               
+    </div>
+</div>

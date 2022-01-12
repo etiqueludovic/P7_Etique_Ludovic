@@ -1,0 +1,24 @@
+<div class="card-deck">
+<mat-card *ngFor="let dataItem of Posts" class="card" role="listemessages">
+    <mat-card-header class="card-header"> 
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title class="title">{{ dataItem.username }}</mat-card-title>
+      <mat-card-subtitle>{{dataItem.title}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="card-img" >
+      <img  mat-card-image src="{{dataItem.imageUrl}}" alt="{{dataItem.imageUrl}}">
+    </div>
+    <mat-card-content class="card-footer text-center">
+      <p>
+        {{dataItem.content}}
+      </p>
+    </mat-card-content>
+    <div>
+      <button *ngIf="userId == dataItem.userId" [routerLink]="['edit', dataItem.id]" mat-button> EDITER </button>
+      <button *ngIf="userId == dataItem.userId" [routerLink]="['view', dataItem.id]" mat-button> VOIR </button>
+      <button *ngIf="userId == dataItem.userId" type="submit" class="btn btn-danger" [routerLink]="['delete', dataItem.id]" (click)="DeleteMessage()">SUPPRIMER</button>
+    </div>
+  </mat-card>
+</div>
+  
+

@@ -1,0 +1,68 @@
+textarea[name=monTexte]
+{
+ resize : both;
+ min-width : 100px;
+ min-height : 100px;
+ max-width : 200px;
+ max-height : 200px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+.complet {
+    padding: 20px 10px 10px 10px;
+    border: solid 1px;
+    border-radius: 5px;
+    font-size:15px;
+    width: 700px;
+    min-height: 800px;
+    background: white;
+    box-shadow: 5px 5px 15px 5px #555555;
+}
+
+.prev {
+        border: solid 1px;
+        border-radius: 5px;
+        font-size:15px;
+        width: 500px;
+        min-height: 400px;
+        background: white;
+        box-shadow: 5px 5px 15px 5px #555555;
+        margin: 30px 0px 0px 90px;
+        vertical-align: middle
+    
+}
+
+.prevtitre {
+    text-align: center;
+    vertical-align: middle;
+    background: rgb(210, 210, 210);
+    border-bottom: #555555 solid 1px;
+    height:100px;
+    width:100%;
+    font-size:17px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.prevlib {
+    text-align: center;
+    font-size: 17px;
+}
+
+.emoji-mart {
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+}
+
+img {
+    background-size: cover;
+    width: 100%;
+  }

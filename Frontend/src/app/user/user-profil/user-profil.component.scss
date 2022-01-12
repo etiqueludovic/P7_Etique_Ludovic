@@ -1,0 +1,24 @@
+.email, .user, .bio {
+    padding: 0px 0px 10px 0px;
+    border-bottom:black solid 1px;
+}
+
+.img {
+    float: right;
+    top:0;
+}
+.profil-tab {
+    border: solid 1px;
+    border-radius: 5px;
+    font-size:15px;
+    width: 500px;
+    height: 500px;
+    background: white;
+    box-shadow: 5px 5px 15px 5px #555555;
+}
+
+.titleProfil {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+}

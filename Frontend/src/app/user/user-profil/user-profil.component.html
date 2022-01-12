@@ -1,0 +1,21 @@
+
+<div class="justify-content-center profil-tab">
+    <div class="justify-content-center text-center titleProfil">
+        Profil Utilisateur
+    </div>
+    <div class="tab-pane active">
+        <mat-card *ngFor="let profil of Profil">
+            <label for="email">Adresse Email</label>
+                <label class="img" for="imageUrl">Image du profil</label>
+                <img class="img" src="{{profil.imageUrl}}" name="imageUrl">
+            <div class="email" name="email">{{profil.email}}</div>
+
+            <label for="user">Nom d'utilisateur</label>
+            <div class="user" name="user">{{profil.username}}</div>
+            
+            <label for="bio">Vos Préférences</label>
+            <div class="bio" name="bio">{{profil.bio}}</div>
+
+        </mat-card>
+    </div>
+

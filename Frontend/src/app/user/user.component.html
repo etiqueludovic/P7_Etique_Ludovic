@@ -1,0 +1,18 @@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of UserList">
+            <td>{{dataItem.username}}</td>
+            <td>{{dataItem.email}}</td>
+            <td>{{dataItem.id}}</td>
+        </tr>
+    </tbody>
+</table>
+
