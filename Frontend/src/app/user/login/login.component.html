@@ -18,7 +18,7 @@
                 <label for="password">Mot de passe</label>
                 </div>
 
-                <button class="btn btn-success" *ngIf="!isAuth" type="submit" [disabled]="g.invalid">Connexion</button>
+                <button class="btn btn-primary" *ngIf="!isAuth" type="submit" [disabled]="g.invalid">Connexion</button>
                 <button class="btn btn-danger" *ngIf="isAuth" (click)="onSignOut()">
                     Se Déconnecter
                 </button>
