@@ -40,6 +40,7 @@ export class loginComponent implements OnInit {
 
       if (token){
         this.isAuth = true
+        this.router.navigate(['messages']);
       } else {
         this.isAuth = false
       }
@@ -55,14 +56,11 @@ export class loginComponent implements OnInit {
         }
         this.connectionService.Login(logsign)
         .subscribe((data) => {
-            this.connectionService.Login;
+            this.isAuth = true;
             currentUser = data
             sessionStorage.setItem('token', JSON.stringify(data))
-            this.isAuth = true;
             console.log('connexion réussi !');
             location.reload()
-            this.router.navigate(['messages']);
-            
           }
         )
       }
