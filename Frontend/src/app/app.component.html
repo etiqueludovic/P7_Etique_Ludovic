@@ -59,4 +59,19 @@
   <router-outlet></router-outlet>
 </div>
 </div>
+<div *ngIf="!id">
+<div class="d-flex justify-content-center" routerLinkActive="active" > BIENVENUE SUR GROUPOMANIA</div>
+<div  routerLinkActive="active" class="d-flex justify-content-center">VEUILLEZ VOUS </div>
+
+ <div class="d-flex justify-content-center"> <a routerLink="register">
+    INSCRIRE
+  </a>
+ 
+</div>
+<div class="d-flex justify-content-center">OU VOUS</div> 
+
+<div> <a routerLink="login" class="d-flex justify-content-center"> CONNECTER </a></div>
+
+</div>
+
 </body>
