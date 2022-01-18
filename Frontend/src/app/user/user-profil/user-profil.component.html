@@ -3,19 +3,38 @@
     <div class="justify-content-center text-center titleProfil">
         Profil Utilisateur
     </div>
-    <div class="tab-pane active">
-        <mat-card *ngFor="let profil of Profil">
-            <label for="email">Adresse Email</label>
-                <label class="img" for="imageUrl">Image du profil</label>
-                <img class="img" src="{{profil.imageUrl}}" name="imageUrl">
-            <div class="email" name="email">{{profil.email}}</div>
-
-            <label for="user">Nom d'utilisateur</label>
-            <div class="user" name="user">{{profil.username}}</div>
-            
-            <label for="bio">Vos Préférences</label>
-            <div class="bio" name="bio">{{profil.bio}}</div>
-
-        </mat-card>
+    <div class="tab-pane active" >
+        <div *ngFor="let profil of Profil" class="grid">
+            <div id="right-profil" class="d-flex justify-content-center">
+            <label class="img d-flex justify-content-center" for="imageUrl">Image du profil</label>
+                <img *ngIf="retrievedImage" class="img-carree" [src]="retrievedImage" name="imageUrl">
+                <input type="file" (change)="onFileSelected($event)">
+                <button type="button" (click)="UpdateProfil_image()">Enregistrer</button>
+            </div>
+        <form id="left-profil" (ngSubmit)="UpdateEmail(em)" #em="ngForm">
+                <label for="email">Adresse Email</label>
+                <div *ngIf="!modif_e" type="email" class="email" name="email">{{profil.email}}</div>
+                <input *ngIf="modif_e" type="email" class="email" name="email" [(ngModel)]="email" required>
+                <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_e" (click)="UpdateOn_e()">Modifier</button> 
+                <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_e">Enregistrer</button>
+                <button type="button" (click)="Cancel()" *ngIf="modif_e">Annuler</button>
+        </form>
+        <form id="leftdeux-profil" (ngSubmit)="UpdateUsername(us)" #us="ngForm">
+                <label for="user">Nom d'utilisateur</label>
+                <div *ngIf="!modif_u" type="text" class="user" name="user">{{profil.username}}</div>
+                <input  *ngIf="modif_u" type="text" class="username" name="username" value="{{profil.username}}" [(ngModel)]="username">
+                <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_u" (click)="UpdateOn_u()">Modifier</button> 
+                <button  type="submit" class="btn-modif" class="btn btn-primary" *ngIf="modif_u">Enregistrer</button>
+                <button type="button" (click)="Cancel()" *ngIf="modif_u">Annuler</button>
+        </form>
+        <form id="lefttrois-profil" (ngSubmit)="UpdateBio(pref)" #pref="ngForm">
+                <label for="bio">Vos Préférences</label>
+                <div *ngIf="!modif_b" type="text" class="bio" name="bio">{{profil.bio}}</div>
+                <textarea *ngIf="modif_b" type="text" class="bio" name="bio" value="{{profil.bio}}" [(ngModel)]="bio"></textarea>
+                <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_b" (click)="UpdateOn_b()">Modifier</button> 
+                <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_b">Enregistrer</button>
+                <button type="button" (click)="Cancel()" *ngIf="modif_b">Annuler</button>
+        </form>          
     </div>
+</div>
 
