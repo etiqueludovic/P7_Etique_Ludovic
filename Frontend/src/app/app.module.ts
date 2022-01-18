@@ -23,6 +23,7 @@ import { UpdateMessageComponent } from './messages/update-message/update-message
 import { ViewMessageComponent } from './messages/view-message/view-message.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 const appRoutes: Routes = [
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatSnackBarModule,
     PickerModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -77,6 +79,7 @@ const appRoutes: Routes = [
     HttpClient,
     UserService,
     connectionService,
+    ProfilComponent,
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [AppComponent]
