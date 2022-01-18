@@ -5,9 +5,9 @@
       <mat-card-title class="title">{{ dataItem.username }}</mat-card-title>
       <mat-card-subtitle>{{dataItem.title}}</mat-card-subtitle>
     </mat-card-header>
-    <div class="card-img" >
-      <img  mat-card-image src="{{dataItem.imageUrl}}" alt="{{dataItem.imageUrl}}">
-    </div>
+      <div class="card-img" *ngIf="retrievedImage">
+        <img [src]="retrievedImage" alt="{{dataItem.imageUrl}}">
+      </div>
     <mat-card-content class="card-footer text-center">
       <p>
         {{dataItem.content}}
