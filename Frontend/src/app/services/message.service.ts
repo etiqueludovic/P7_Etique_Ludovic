@@ -27,10 +27,6 @@ export class AuthMessage {
         return this.http.post(this.APIUrl+'/messages/addmessage', message, httpOptions)
     }
 
-    addfile(file: FormData) {
-        return this.http.post('http://localhost:3000/images', file)
-    }
-
     viewMessages() {
         return this.http.get(this.APIUrl+'/messages')
     }
@@ -39,13 +35,22 @@ export class AuthMessage {
         return this.http.get(this.APIUrl+'/messages/'+id, httpOptions)
     }
 
-
     deleteMessage(id: string) {
         return this.http.delete(this.APIUrl+'/messages/delete/'+id, httpOptions)
     }
 
-    updateMessage(message: Message) {
-        return this.http.delete(this.APIUrl+'/messages/update/'+message, httpOptions)
+    updateMessage(id: string, message: Message) {
+        return this.http.put(this.APIUrl+'/messages/update/'+id, message, httpOptions)
     }
+
+  public messages: string[] = [];
+
+  public add(message: string): void {
+    this.messages.push(message);
+  }
+
+  public clear(): void {
+    this.messages = [];
+  }
 
 }
