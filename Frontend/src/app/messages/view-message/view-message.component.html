@@ -4,7 +4,9 @@
       <mat-card-title>{{dataItem.title}}</mat-card-title>
       <mat-card-subtitle>{{ dataItem.userId }} et {{ dataItem.username }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{dataItem.imageUrl}}" alt="{{dataItem.imageUrl}}">
+    <div *ngIf=retrievedImage>
+      <img [src]="retrievedImage">
+    </div>
     <mat-card-content>
       <p>
         {{dataItem.content}}
@@ -14,5 +16,26 @@
       <button *ngIf="userId == dataItem.userId" [routerLink]="['edit', dataItem.id]" mat-button> EDITER </button>
       <button *ngIf="userId == dataItem.userId" type="submit" class="btn btn-danger" [routerLink]="['delete', dataItem.id]" (click)="DeleteMessage()">SUPPRIMER</button>
     </mat-card-actions>
-  </mat-card>
+</mat-card>
+
+
+
+<div class="container row">
+      <div class="col-md-6">
+          <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+              name="name" />
+      </div>
+      <div class="col-md-6">
+          <input type="button" (click)="getImage()" value="Get Image">
+      </div>
+  </div>
+  <div class="container row">
+      <div class="col-md-12">
+          <div *ngIf=retrievedImage>
+              <img [src]="retrievedImage">
+          </div>
+      </div>
+  </div>
+  
+  
   
