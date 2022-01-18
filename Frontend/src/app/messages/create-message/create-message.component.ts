@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthMessage } from '../../services/message.service';
 import { Router } from "@angular/router";
@@ -16,7 +16,7 @@ if (sessionStorage['token']){
   styleUrls: ['./create-message.component.scss']
 })
 export class CreateMessageComponent implements OnInit {
-
+  @Output() onFileSelect: EventEmitter<Object> = new EventEmitter();
   @Input() title!: string;
   @Input() content!: string;
   userId!: number;
@@ -41,47 +41,49 @@ export class CreateMessageComponent implements OnInit {
       this.username = JSON.parse(sessionStorage['token']).username;
     }
   }
+  selectedFile!: File;
 
   fileProgress(fileInput: any) {
-    const files = fileInput.target.files[0]
-    this.fileData = files;
-    console.log('ici fileData : ')
-    console.log(this.fileData)
+    this.selectedFile = <File>fileInput.target.files[0];
     this.preview();
 }
 
+
+
+
   preview() {
     const ImageUrl = new FormData();
-    ImageUrl.append('file', this.fileData, this.fileData.name);
+    ImageUrl.append('file', this.selectedFile, this.selectedFile.name);
     console.log('ici imageURl : ')
-    console.log(this.fileData)
+    console.log(this.selectedFile)
     // Show preview 
-    var mimeType = this.fileData.type;
+    var mimeType = this.selectedFile.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
     var reader = new FileReader();      
-    reader.readAsDataURL(this.fileData); 
+    reader.readAsDataURL(this.selectedFile); 
     reader.onload = (_event) => { 
       this.previewUrl = reader.result; 
     }
   }
 
   onSubmit(form: NgForm) {
-    const ImageUrl = new FormData();
-    ImageUrl.append('file', this.fileData, this.fileData.name);
-    console.log('ici imageURl : ')
-    console.log(ImageUrl)
     const formulaire = {
       'title': form.value.title,
       'content': form.value.content,
-      'ImageUrl': this.fileData.name,
-      'userId': JSON.parse(sessionStorage['token']).id,
+      'ImageUrl': this.selectedFile.name,
+      'userId': JSON.parse(sessionStorage['token']).userId,
       'username': JSON.parse(sessionStorage['token']).username
     }
     console.log(formulaire)
-    this.authMessage.addfile(ImageUrl)
+    const fd = new FormData();
+    fd.append('file', this.selectedFile, this.selectedFile.name)
+    this.http.post('http://localhost:3000/images', fd)
+    .subscribe(res => {
+      console.log(res)
+    })
     this.authMessage.addMessage(formulaire)
     .subscribe(() => {
       console.log('Enregistré !');
@@ -89,6 +91,7 @@ export class CreateMessageComponent implements OnInit {
       console.log(formulaire);
       this.router.navigate(['/messages']);
       })
+      
     
   }
 
