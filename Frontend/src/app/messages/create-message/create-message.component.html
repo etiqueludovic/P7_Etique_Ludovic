@@ -11,22 +11,22 @@
         </li>
         <div class="container">
             <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h3>Insérer une image</h3>            
-            <div class="form-group">
-                <input type="file" name="file" (change)="fileProgress($event)" />
-            </div>
-            <div *ngIf="fileUploadProgress">
-                Upload progress: {{ fileUploadProgress }}
-            </div>
- 
-            <div class="mb-3" *ngIf="uploadedFilePath">
-                {{uploadedFilePath}}
+            <div class="col-md-6 offset-md-3">
+                <h3>Insérer une image</h3>            
+                <div class="form-group">
+                        <input type="file" name="file" (change)="fileProgress($event)" />
+                    </div>
+                    <div *ngIf="fileUploadProgress">
+                        Upload progress: {{ fileUploadProgress }}
+                    </div>
+        
+                    <div class="mb-3" *ngIf="uploadedFilePath">
+                        {{uploadedFilePath}}
+                    </div>
+                    </div>
+                
             </div>
         </div>
-              
-    </div>
-</div>
 
         <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
     </form>
