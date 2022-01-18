@@ -10,8 +10,7 @@ if (sessionStorage['token']){
 
 const httpOptions : any    = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': token,
+      'Authorization': 'Bearer ' + token,
       responseType: 'text'
 
     })
@@ -29,22 +28,39 @@ export class UserService {
         return this.http.get(this.APIUrl+'/users/list')
       }
     
-      addUser(user: User){
-        return this.http.post(this.APIUrl+'/auth/register', user);
+      addUser(user: User) {
+        return this.http.post(this.APIUrl+'/users/register', user);
       }
+
       Login(user: User){
-        return this.http.post(this.APIUrl+'/auth/login', user);
+        return this.http.post(this.APIUrl+'/users/login', user);
       }
       
-      updateUser(user: {username: string, email: string, bio?: string}){
-        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).id, user, httpOptions);
+      updateEmail(email: {email: string}){
+        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId, email, httpOptions);
+      }
+
+      updateBio(bio: {bio: string}){
+        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId+'/bio', bio, httpOptions);
+      }
+
+      updatePass(password: {password: string}){
+        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId+'/password', password, httpOptions);
+      }
+
+      updateUsername(username: {username: string, userId: string}){
+        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId+'/username', username, httpOptions);
+      }
+
+      updateProfil_image(profil_image: {profil_image: string}){
+        return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId+'/profil_image', profil_image, httpOptions);
       }
     
       deleteUser(user: User){
-        return this.http.delete(this.APIUrl+'/users/delete/'+JSON.parse(sessionStorage['token']).id, httpOptions);
+        return this.http.delete(this.APIUrl+'/users/delete/'+JSON.parse(sessionStorage['token']).userId, httpOptions);
       }
 
-      getprofil(id: string) {
-        return this.http.get(this.APIUrl+'/auth/profile/'+JSON.parse(sessionStorage['token']).id, httpOptions)
+      getprofil(userId: any) {
+        return this.http.get(this.APIUrl+'/users/profil/'+JSON.parse(sessionStorage['token']).userId)
       }
 }
