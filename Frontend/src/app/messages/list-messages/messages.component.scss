@@ -63,6 +63,43 @@ button {
   float:right;
 }
 
+.btn_comment {
+  margin: 10px 10px 10px 10px;
+  float:right;
+}
+
+.btn_ajout {
+  margin:10px;
+  float:left;
+}
+
+.comment {
+  margin:10px;
+  width:100%;
+  border: solid 1px blue;
+  display:grid;
+  grid-template-areas:
+  "namecom . delcom"
+  "content . ." ;
+  grid-template-columns: 50% 30% 20%;
+}
+
 .container {
   max-width: 100%;
+}
+
+.namecom {
+  font-weight:bold;
+  font-size: 17px;
+  grid-area: namecom;
+}
+
+.delcom {
+  grid-area: delcom;
+  width: 40px;
+  height: 40px;
+}
+
+.contentcom {
+  grid-area: content;
 }
