@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     bio: DataTypes.STRING,
-    isAdmin: DataTypes.BOOLEAN,
-    picture: DataTypes.STRING,
+    imageUrl: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
