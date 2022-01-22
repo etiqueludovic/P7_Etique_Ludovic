@@ -20,6 +20,7 @@ exports.newComment = (req, res, next) => {
       res.status(201).json({ message: 'Commentaire ajoutée' });
     }
   });
+  connection.end();
 }
 
 /**
@@ -35,8 +36,17 @@ exports.getCommentsofPost = (req, res, next) => {
       res.status(200).json(comments);
     }
   });
+}
 
-  connection.end();
+exports.getCommentAllPosts = (req, res, next) => {
+  const connection = database.connect();
+  connection.query("SELECT * FROM Comments", (error, comments, fields) => {
+    if (error) {
+      res.status(500).json({ "error": error.sqlMessage });
+    } else {
+      res.status(200).json(comments);
+    }
+  });
 }
 
 /**
