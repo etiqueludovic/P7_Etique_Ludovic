@@ -8,7 +8,6 @@ textarea[name=monTexte]
 }
 
 .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
 
@@ -21,6 +20,10 @@ textarea[name=monTexte]
     min-height: 800px;
     background: white;
     box-shadow: 5px 5px 15px 5px #555555;
+    @media screen and (max-width: 700px){
+        height: 110%;
+        width: 375px;
+    }
 }
 
 .prev {
@@ -32,7 +35,13 @@ textarea[name=monTexte]
         background: white;
         box-shadow: 5px 5px 15px 5px #555555;
         margin: 30px 0px 0px 90px;
-        vertical-align: middle
+        vertical-align: middle;
+        @media screen and (max-width: 700px){
+            height: 110%;
+            width: 375px;
+            margin: 0;
+            width: 100%;
+        }
     
 }
 
