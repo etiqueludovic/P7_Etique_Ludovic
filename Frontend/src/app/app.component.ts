@@ -4,6 +4,8 @@ import { loginComponent } from './user/login/login.component';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ProfilComponent } from './user/user-profil/user-profil.component';
+import { UserService } from './services/user.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 let token = ''; 
 let userId = '';
@@ -25,7 +27,9 @@ export class AppComponent {
               private connect: connectionService, 
               private login: loginComponent, 
               private http: HttpClient,
-              private profil: ProfilComponent
+              private profil: ProfilComponent,
+              private userService: UserService, 
+              private sanitizer: DomSanitizer
               ) {}
 
     ngOnInit(){
@@ -34,7 +38,7 @@ export class AppComponent {
         console.log("Requête compléte !")
       })
 
-      this.profil.UserProfil();
+      this.UserProfilComp();
 
     }
 
@@ -48,8 +52,11 @@ export class AppComponent {
     image!: string;
     submitted : boolean = false;
     uploadError: string = '';
-
-    newForm =  () => {
+    Profil: any=[];
+    retrieveResonse!: Blob;
+    base64Data!: string;
+    retrievedImage: any;
+    /*newForm =  () => {
       this.userForm = this.fb.group({
         photo         : ['', Validators.compose([Validators.required])]
       })
@@ -78,5 +85,23 @@ export class AppComponent {
     onFileSelect(file: Event) {
       this.userForm.patchValue({ photo: file });
       this.userForm.get('photo').updateValueAndValidity();
+    }*/
+
+    UserProfilComp(){
+      this.userService.getprofil(JSON.parse(sessionStorage['token']).userId).subscribe(data => {
+        this.Profil = [data];     
+       /* this.http.get('http://localhost:3000/images/' + this.Profil[0].Profil_image, {responseType: 'blob'})
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = URL.createObjectURL(this.retrieveResonse);
+            this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data);*/
+            this.http.get(this.Profil[0].profil_image, {responseType: 'blob'})
+              .subscribe((res) => {
+                this.retrieveResonse = res;
+                this.base64Data = URL.createObjectURL(this.retrieveResonse);
+                this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data)
+          })
+        })
     }
   }
