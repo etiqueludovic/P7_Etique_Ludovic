@@ -8,7 +8,7 @@ const auth = require('../middleware/auth');
 router.post('/register', validate.newUser, userCtrl.newuser);
 router.post('/login', validate.login, userCtrl.login);
 router.get('/profil/:userId', userCtrl.getProfil);
-router.get('/list', auth, userCtrl.getAllUsers);
+router.get('/list', userCtrl.getAllUsers);
 router.get('/:userId', auth, validate.id, userCtrl.getOneUser);
 router.get('/:userId/message', auth, validate.id, userCtrl.getAllPostsOfUser);
 router.put('/:userId/username', auth, userCtrl.changeusername);
