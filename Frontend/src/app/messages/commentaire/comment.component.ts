@@ -36,8 +36,10 @@ const httpOptions : any    = {
     commentafficher!: boolean;
     check!: Boolean;
     checkc!: Boolean;
-    index!: number;
+    index!: any;
     event!: any;
+    com!: any;
+    checkcom!: boolean;
 
     constructor( private commentservice: CommentService, private messageservice: AuthMessage, private http: HttpClient ) {}
 
@@ -48,7 +50,14 @@ const httpOptions : any    = {
         })
         this.commentservice.getComment().subscribe(data => {
             this.Comment = data;
+            for (let i = 0; i < this.Posts.length; i++) {
+            if (this.Posts[i].id == this.Comment[i].post_id){
+                this.Posts[i].checkcom =true;
+                }
+            }
         })
+        
+        console.log(this.com)
         this.commentafficher = false;
 
         
@@ -78,25 +87,15 @@ const httpOptions : any    = {
         this.commentafficher = false;
     }
 
-    viewcomment(event: Event) {
-        if (event) {
-            for (let i = 0; i < this.Posts.length; i++) {
-                this.http.get('http://localhost:3000/api/comment/'+this.Posts[i].id, httpOptions).subscribe(data =>{
+    viewcomment(id: any) {
+        for(let i = 0; i < this.Posts.length; i++) {
+                this.http.get('http://localhost:3000/api/comment/'+id, httpOptions).subscribe(data =>{
                     this.Comment = data;
-            if (this.Posts[i].id = this.Comment.post_id) {
-            this.Posts[i].check = true;
-            //this.Comment[i].checkc = true;
-        } else {
-            this.Posts[i].check = false;
-            //this.Comment[i].checkc = false;
+                    if (id) {
+                    this.Posts[i].check = true; 
+                }      
+            })  
         }
-        this.commentafficher = true;
-        console.log(this.Posts[i].id+"  et   "+this.checkc)
-        console.log("ici this post")
-        })
-    }
-    }
-    
     }
 
     deletecomment(id: Number) {
