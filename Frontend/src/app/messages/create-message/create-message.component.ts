@@ -4,6 +4,7 @@ import { AuthMessage } from '../../services/message.service';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/user.service';
 
 let token = ''; 
 if (sessionStorage['token']){
@@ -28,11 +29,13 @@ export class CreateMessageComponent implements OnInit {
   emojiForm: any;
   username!: string;
   isAuth!: boolean;
+  Profil: any=[];
 
   constructor(private router: Router,
               private http: HttpClient,
               private authMessage: AuthMessage,
-              private _snackBar: MatSnackBar
+              private _snackBar: MatSnackBar,
+              private userService: UserService
               ) { }
 
   ngOnInit(){
@@ -40,6 +43,8 @@ export class CreateMessageComponent implements OnInit {
       this.isAuth = true;
       this.username = JSON.parse(sessionStorage['token']).username;
     }
+    
+    
   }
   selectedFile!: File;
 
@@ -70,12 +75,15 @@ export class CreateMessageComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.userService.getprofil(JSON.parse(sessionStorage['token']).userId).subscribe(data => {
+      this.Profil = [data];     
     const formulaire = {
       'title': form.value.title,
       'content': form.value.content,
       'ImageUrl': this.selectedFile.name,
       'userId': JSON.parse(sessionStorage['token']).userId,
-      'username': JSON.parse(sessionStorage['token']).username
+      'username': JSON.parse(sessionStorage['token']).username,
+      'profil_image': this.Profil[0].profil_image
     }
     console.log(formulaire)
     const fd = new FormData();
@@ -91,7 +99,7 @@ export class CreateMessageComponent implements OnInit {
       console.log(formulaire);
       this.router.navigate(['/messages']);
       })
-      
+    })
     
   }
 
