@@ -12,3 +12,16 @@ mat-card {
 .row {
     justify-content: center !important;
 }
+
+.header-image {
+    background-size: cover;
+    clip-path:ellipse(50% 50%);
+    height: 60px;
+    width: 60px;
+    position:absolute;
+  }
+
+  img {
+    background-size: cover;
+    width: 100%;
+  }
