@@ -1,10 +1,121 @@
-.mat-card {
-    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    display: block;
-    position: relative;
-    padding: 16px;
-    border-radius: 4px;
-    background: white;
-    color: rgba(0, 0, 0, 0.87);
+textarea[name=monTexte]
+{
+ resize : both;
+ min-width : 100px;
+ min-height : 100px;
+ max-width : 200px;
+ max-height : 200px;
+}
+
+.header-image {
+    background-size: cover;
+    clip-path:ellipse(50% 50%);
+    height: 60px;
+    width: 60px;
+    position:absolute;
+  }
+
+
+.complet {
+    padding: 20px 10px 10px 10px;
     border: solid 1px;
+    border-radius: 5px;
+    font-size:15px;
+    margin-top: 10px;
+    width: 700px;
+    min-height: 800px;
+    background: white;
+    box-shadow: 5px 5px 15px 5px #555555;
+    @media screen and (max-width: 700px){
+        height: 110%;
+        width: 375px;
+    }
+}
+
+.prev {
+        border: solid 1px;
+        border-radius: 5px;
+        font-size:15px;
+        width: 500px;
+        min-height: 400px;
+        background: white;
+        box-shadow: 5px 5px 15px 5px #555555;
+        margin: 30px 0px 0px 90px;
+        vertical-align: middle;
+        @media screen and (max-width: 700px){
+            height: 110%;
+            width: 375px;
+            margin: 0;
+            width: 100%;
+        }
+    
+}
+
+.prevtitre {
+    text-align: center;
+    vertical-align: middle;
+    background: rgb(210, 210, 210);
+    border-bottom: #555555 solid 1px;
+    height:100px;
+    width:100%;
+    font-size:17px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.prevlib {
+    text-align: center;
+    font-size: 17px;
+}
+
+.emoji-mart {
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+}
+
+  .card-header {
+    text-align: center;
+    vertical-align: middle;
+    background: rgb(210, 210, 210);
+    border-bottom: #555555 solid 1px;
+    width:100%;
+    height: 75px;
+    font-size:17px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+}
+
+.row {
+    justify-content: center !important;
+}
+
+.title {
+  font-weight: bold;
+  margin-left: 80px;
+}
+
+.subtitle {
+  margin-left:-35px;
+  margin-top:30px;
+}
+
+img {
+  background-size: cover;
+  width: 100%;
+}
+
+.card-img {
+  min-height:100px;
+}
+
+button {
+  margin: 10px;
+}
+
+.text-center {
+    margin:20px;
 }
