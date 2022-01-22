@@ -1,4 +1,48 @@
 .container {
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
+
  }
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr;
+    grid-template-areas: 
+    "left middle_u ."
+    "left middle_e right"
+    "left middle_b ."
+    ;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 1px blue;
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+
+}
+.left {
+    grid-area: left;
+}
+
+.right {
+    grid-area: right;
+}
+
+.middle_u {
+    grid-area: middle_u;
+    }
+.middle_e{
+    grid-area: middle_e;
+    }
+.middle_b{
+    grid-area: middle_b;
+    }
+
+    .img-carree {
+        clip-path:ellipse(50% 50%);
+        height: 60px;
+        width: 60px;
+        margin: 10px 30% 10px 30% ;
+        }
