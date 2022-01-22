@@ -115,11 +115,11 @@ exports.getProfil = (req, res, next) => {
  * Récupération de tous les utilisateurs
  */
 exports.getAllUsers = (req, res, next) => {
-  connection.query("SELECT id, username, profil_image FROM user", (error, users, fields) => {
+  connection.query("SELECT * FROM user", (error, users, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
-      res.status(200).json({ users });
+      res.status(200).json( users );
     }
   });
 }
@@ -200,8 +200,9 @@ exports.changeProfilePicture = (req, res, next) => {
 
   let ext = originalname.split('.').pop();
   let filename = originalname.split('.').slice(0, -1).join('.');
+  let date = Math.floor(Date.now() /1000)
 
-  const profil_image = `${req.protocol}://${req.get('host')}/images/${filename + '-' + Date.now()+'.'+ext}`;
+  const profil_image = `${req.protocol}://${req.get('host')}/images/${filename + '-' + date +'.'+ext}`;
   const userId = req.body.userId;
   const sql = `UPDATE user SET profil_image=? WHERE id=?`;
   const sqlParams = [profil_image, userId];
@@ -244,23 +245,6 @@ exports.changebio = (req, res, next) => {
       console.log([username, id])
       console.log(res)
       res.status(201).json({ message: 'Username du profil modifiée' });
-    }
-  });
-}
-
-/**
- * Donner/enlever les droits d'admin à un utilisateur
- */
-exports.changeAdmin = (req, res, next) => {
-  const isadmin = req.body.isadmin;
-  const userId = req.params.id;
-  const sql = "UPDATE user SET isadmin=? WHERE id=?";
-  const sqlParams = [isadmin, userId];
-  connection.query(sql, sqlParams, (error, results, fields) => {
-    if (error) {
-      res.status(500).json({ "error": error.sqlMessage });
-    } else {
-      res.status(201).json({ message: 'Droits d\'administrateur modifiée' });
     }
   });
 }
