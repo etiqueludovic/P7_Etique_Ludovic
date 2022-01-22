@@ -36,7 +36,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Cross-Origin-Resource-Policy', '*');
   next();
 });
 // Parse le body des requetes en json
@@ -72,8 +71,9 @@ var storage = multer.diskStorage({
 
     let ext = originalname.split('.').pop();
     let filename = originalname.split('.').slice(0, -1).join('.');
+    let date = Math.floor(Date.now() /1000)
 
-    cb(null, filename + '-' + Date.now()+'.'+ext)
+    cb(null, filename + '-' + date +'.'+ext)
   }
 })
  
