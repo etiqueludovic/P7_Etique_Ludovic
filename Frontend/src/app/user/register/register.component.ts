@@ -31,18 +31,7 @@ export class AuthComponent implements OnInit {
     authStatus!: Boolean;
     constructor(private router: Router, private connectionService: UserService) { }
 
-    ngOnInit(): void {
-      this.ListUser();
-    }
-    
-
-    ListUser(){
-      this.connectionService.getUserList().subscribe(data => {
-        console.log(this.UserList.email)
-        this.UserList=data
-      })
-      
-    }
+    ngOnInit(): void { }
     
     onSignUp(form: NgForm) {
       console.log(form.value['email'] );
@@ -55,6 +44,7 @@ export class AuthComponent implements OnInit {
       this.connectionService.addUser(usersign)
     .subscribe(() => {
       console.log('Enregistré !');
+      this.router.navigate(['login']);
       }) 
     }
 
