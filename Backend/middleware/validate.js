@@ -119,7 +119,8 @@ exports.getSomePosts = (req, res, next) => {
 
 // Lors de la publication d'un commentaire
 const commentSchema = Joi.object({
-  postId: Joi.number().integer().positive().required(),
+  post_id: Joi.number().integer().positive().required(),
+  user_id: Joi.number().integer().positive().required(),
   content: Joi.string().trim().required()
 });
 exports.comment = (req, res, next) => {
