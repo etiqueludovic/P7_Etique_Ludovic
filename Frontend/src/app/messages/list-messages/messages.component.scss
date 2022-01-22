@@ -3,16 +3,24 @@
   border-radius: 5px;
   font-size:15px;
   width: 500px;
-  min-height: 250px;
+  max-width: 100%;
+  min-height: 100%;
   margin:20px;
   padding:0;
   background: white;
   box-shadow: 5px 5px 15px 5px #555555;
   text-align: center;
+  @media screen and (max-width: 500px){
+    width: 370px;
+  }
   }
   
   .header-image {
     background-size: cover;
+    clip-path:ellipse(50% 50%);
+    height: 60px;
+    width: 60px;
+    position:absolute;
   }
 
   .card-header {
@@ -25,14 +33,17 @@
     font-size:17px;
     border-radius: 5px 5px 0px 0px;
     display: flex;
+    justify-content: space-between;
 }
 
-.row {
-    justify-content: center !important;
-}
 
 .title {
   font-weight: bold;
+  margin-left: 50px;
+}
+
+.subtitle {
+  margin-left: 60px;
 }
 
 img {
@@ -42,4 +53,16 @@ img {
 
 .card-img {
   min-height:100px;
+}
+
+button {
+  margin: 10px;
+}
+
+.btn_edit {
+  float:right;
+}
+
+.container {
+  max-width: 100%;
 }
