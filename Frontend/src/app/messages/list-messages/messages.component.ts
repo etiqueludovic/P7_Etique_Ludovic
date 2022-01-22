@@ -2,14 +2,27 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthMessage } from '../../services/message.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthUser } from '../../services/auth.service';
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CommentService } from 'src/app/services/comment.services';
+import { NgForm } from '@angular/forms';
 
-let id = '';
-console.log("Ici ce trouve le token avant log")
+let id = ''; 
+let token = '';
+let username = '';
 if (sessionStorage['token']){
-    id = JSON.parse(sessionStorage['token']).userId;
+    id = JSON.parse(sessionStorage['token']).userId,
+    token = JSON.parse(sessionStorage['token']).token,
+    username = JSON.parse(sessionStorage['token']).username
 }
+
+const httpOptions : any    = {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + token,
+      responseType: 'text'
+
+    })
+  };
 
 @Component({
   selector: 'app-messages',
@@ -19,7 +32,7 @@ if (sessionStorage['token']){
 export class MessagesComponent implements OnInit {
 Posts:any=[];
 UserList: any=[];
-username!: string;
+username: string = username;
 authStatus!: boolean;
 dataItem!: number;
 messageId: string = '';
@@ -29,19 +42,37 @@ base64Data: any;
 retrievedImage: any;
 index: any;
 image=[];
-
 retrieveResponse: any;
 base64DataProfil: any;
 retrievedImageprofil: any;
+content: any;
 
-  constructor(private login: AuthUser, private router: Router, private service: AuthMessage, private activateroute: ActivatedRoute, private http: HttpClient, private sanitizer: DomSanitizer) { }
+Comment: any=[];
+commentafficher!: boolean;
+check!: Boolean;
+utilisateurId: any = id;
+
+
+  constructor(
+    private login: AuthUser, 
+    private router: Router, 
+    private service: AuthMessage, 
+    private activateroute: ActivatedRoute, 
+    private http: HttpClient, 
+    private sanitizer: DomSanitizer,
+    private commentservice: CommentService
+    ) { }
 
   ngOnInit() {
-   this.authStatus = this.login.auth;
-   if (id) {
-   this.ListMessages();
+    this.authStatus = this.login.auth;
+    if (id) {
+    this.ListMessages();
+    }
+
+    this.commentafficher = false;
+
   }
-  }
+  
 
   onCreate() {
     if (this.authStatus == true) {
@@ -73,7 +104,6 @@ retrievedImageprofil: any;
   DeleteMessage() {
    this.activateroute.params.subscribe(data => {
      this.messageId = data['id'];
-     console.log(this.userId)
    })
    if (this.messageId)
    this.service.deleteMessage(this.messageId).subscribe(data => {
@@ -92,6 +122,51 @@ retrievedImageprofil: any;
       }
     }
 
+    addcomment(form: NgForm, postid: number) {    
+      this.service.viewMessages().subscribe(data_m =>{
+      this.Posts = data_m
+      const comment = {
+          content: form.value.content,
+          post_id: postid,
+          user_name: this.username,
+          user_id: this.utilisateurId
+      }
+      this.commentservice.addComment(comment)
+      .subscribe(() => {
+          console.log("commentaire créé !")
+      })
+    })
+}
+
+commentMasquer() {
+  for(let i = 0; i < this.Posts.length; i++) {
+  this.Posts[i].commentafficher = false;
+  }
+}
+
+viewcomment(id: any) {
+for(let i = 0; i < this.Posts.length; i++) {
+  if (id == this.Posts[i].id) {
+      this.http.get('http://localhost:3000/api/comment/'+id, httpOptions).subscribe(data =>{
+          this.Comment = data;
+          this.Posts[i].check = true; 
+          this.Posts[i].commentafficher = true;
+    })  
+  } else {
+    this.Posts[i].commentafficher = false;
+  }
+}
+
+}
+
+deletecomment(id: Number) {
+  for (let i = 0; i < this.Comment.length; i++) {
+      this.commentservice.deleteComment(id).subscribe(data => {
+          console.log(data)
+        });
+        break;
+}
+}
 
     
   }
