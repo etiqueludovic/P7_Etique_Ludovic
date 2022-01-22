@@ -1,10 +1,10 @@
 <mat-card *ngFor="let dataItem of Post; let i = index;" class="example-card" role="listemessages">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="header-image">{{ retrievedImageProfil }}</div>
       <mat-card-title>{{dataItem.title}}</mat-card-title>
-      <mat-card-subtitle>{{ dataItem.userId }} et {{ dataItem.username }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ dataItem.postId }} et {{ dataItem.username }}</mat-card-subtitle>
     </mat-card-header>
-    <div *ngIf=retrievedImage>
+    <div class="" *ngIf=retrievedImage>
       <img [src]="retrievedImage">
     </div>
     <mat-card-content>
@@ -13,29 +13,10 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="userId == dataItem.userId" [routerLink]="['edit', dataItem.id]" mat-button> EDITER </button>
-      <button *ngIf="userId == dataItem.userId" type="submit" class="btn btn-danger" [routerLink]="['delete', dataItem.id]" (click)="DeleteMessage()">SUPPRIMER</button>
+      <button *ngIf="postId == dataItem.postId" [routerLink]="['edit', dataItem.id]" mat-button><i class="bi bi-pencil-fill">EDITER</i></button>
+      <button *ngIf="postId == dataItem.postId" type="submit" class="btn btn-danger" [routerLink]="['delete', dataItem.id]" (click)="DeleteMessage()">SUPPRIMER</button>
     </mat-card-actions>
+    <app-comment></app-comment>
 </mat-card>
-
-
-
-<div class="container row">
-      <div class="col-md-6">
-          <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
-              name="name" />
-      </div>
-      <div class="col-md-6">
-          <input type="button" (click)="getImage()" value="Get Image">
-      </div>
-  </div>
-  <div class="container row">
-      <div class="col-md-12">
-          <div *ngIf=retrievedImage>
-              <img [src]="retrievedImage">
-          </div>
-      </div>
-  </div>
-  
   
   
