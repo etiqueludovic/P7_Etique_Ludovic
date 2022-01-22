@@ -32,15 +32,23 @@ export class AuthMessage {
     }
 
     ViewOneMessage(id: string) {
-        return this.http.get(this.APIUrl+'/messages/'+id, httpOptions)
+        return this.http.get(this.APIUrl+'/messages/'+id)
     }
 
     deleteMessage(id: string) {
         return this.http.delete(this.APIUrl+'/messages/delete/'+id, httpOptions)
     }
 
-    updateMessage(id: string, message: Message) {
-        return this.http.put(this.APIUrl+'/messages/update/'+id, message, httpOptions)
+    updateTitleMessage(id: string, message: Message) {
+        return this.http.put(this.APIUrl+'/messages/update/'+id+'/title', message, httpOptions)
+    }
+
+    updateContentMessage(id: string, message: Message) {
+      return this.http.put(this.APIUrl+'/messages/update/'+id+'/content', message, httpOptions)
+    }
+
+    updateFileMessage(id: string, message: Message) {
+    return this.http.put(this.APIUrl+'/messages/update/'+id+'/file', message, httpOptions)
     }
 
   public messages: string[] = [];
