@@ -121,7 +121,8 @@ exports.getSomePosts = (req, res, next) => {
 const commentSchema = Joi.object({
   post_id: Joi.number().integer().positive().required(),
   user_id: Joi.number().integer().positive().required(),
-  content: Joi.string().trim().required()
+  content: Joi.string().trim().required(),
+  user_name: Joi.string().trim().required()
 });
 exports.comment = (req, res, next) => {
   const {error, value} = commentSchema.validate(req.body);
