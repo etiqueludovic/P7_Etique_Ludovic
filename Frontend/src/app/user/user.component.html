@@ -1,18 +1,14 @@
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>id</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let dataItem of UserList">
-            <td>{{dataItem.username}}</td>
-            <td>{{dataItem.email}}</td>
-            <td>{{dataItem.id}}</td>
-        </tr>
-    </tbody>
-</table>
-
+<div class="container">
+    <mat-card class="card" *ngFor="let dataItem of UserList">
+        <img class="left img-carree" [src]="dataItem.retrievedImageprofil">
+        <div class="middle_u">
+            {{dataItem.username}}
+        </div>
+        <div class="middle_e">
+            {{dataItem.email}}
+        </div>
+        <div class="middle_b">
+            {{dataItem.bio}}
+        </div>
+    </mat-card>
+</div>
