@@ -14,36 +14,57 @@
     width: 370px;
   }
   }
+
+  .msgtitle {
+    text-align: center;
+  }
+
+  .header-title {
+    display:flex;
+    flex-direction:column;
+    margin:0;
+    padding:0;
+    grid-area: corp;
+    align-self: center;
+    justify-self: center;
+  }
   
   .header-image {
     background-size: cover;
     clip-path:ellipse(50% 50%);
     height: 60px;
     width: 60px;
-    position:absolute;
+    grid-area: img;
+    align-self: center;
+    justify-self: center;
+
   }
 
   .card-header {
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     background: rgb(210, 210, 210);
     border-bottom: #555555 solid 1px;
     width:100%;
-    height: 75px;
-    font-size:17px;
+    height: 100px;
+    font-size:15px;
     border-radius: 5px 5px 0px 0px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-areas: "img corp btn";
+    grid-template-columns: 15% 45% 40% ;
+    @media screen and (max-width: 500px){
+      grid-template-columns: 20% 40% 40% ;
+    }
 }
 
 
 .title {
   font-weight: bold;
-  margin-left: 50px;
+  font-size:17px;
 }
 
 .subtitle {
-  margin-left: 60px;
+  margin-bottom: 0px;
 }
 
 img {
@@ -61,16 +82,23 @@ button {
 
 .btn_edit {
   float:right;
+  grid-area: btn;
+  justify-self: right;
 }
 
 .btn_comment {
   margin: 10px 10px 10px 10px;
+  width: 30px;
+  height: 30px;
   float:right;
+  
 }
 
 .btn_ajout {
-  margin:10px;
+  width: 30px;
+  height: 30px;
   float:left;
+  font-size: 20px
 }
 
 .comment {
@@ -102,4 +130,13 @@ button {
 
 .contentcom {
   grid-area: content;
+}
+
+.btn {
+  padding:4px;
+  @media screen and (max-width: 500px){
+    width:30px;
+    height:30px;
+   margin:5px;
+  }
 }
