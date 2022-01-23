@@ -43,3 +43,12 @@ contraintes de clé étrangère pour "comments" : en CACASDE user_name sur table
 contraintes de clé étrangère pour "messages" : en CACASDE userId sur table user colonne id
 contraintes de clé étrangère pour "messages" : en CACASDE username sur table user colonne username
 contraintes de clé étrangère pour "messages" : en CACASDE profil_image sur table user colonne profil_image
+
+
+# Lancement
+
+Une fois l'installation compléte faire
+```bash
+  npm start
+```
+Le frontend et le backendce lancerons en même temps.
