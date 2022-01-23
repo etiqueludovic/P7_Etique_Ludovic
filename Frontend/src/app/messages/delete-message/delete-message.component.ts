@@ -15,12 +15,14 @@ export class DeleteMessageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // récupére l'ID du message
     this.activatedRoute.params.subscribe(data => {
       this.userId = data['id'];
       console.log("ici l'ID du message :")
       console.log(this.userId);
     });
 
+    // supprime le message grâce à son ID
     this.msgService.deleteMessage(this.userId).subscribe(data => {
       console.log(data)
     });
