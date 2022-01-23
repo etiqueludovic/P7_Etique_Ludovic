@@ -5,9 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthMessage } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 
+let id = '';
 let username = ''; 
+let IsAdmin = 0;
 if (sessionStorage['token']){
-  username = JSON.parse(sessionStorage['token']).username
+  id = JSON.parse(sessionStorage['token']).userId,
+  username = JSON.parse(sessionStorage['token']).username,
+  IsAdmin = JSON.parse(sessionStorage['token']).IsAdmin
 }
 
 @Component({
@@ -16,14 +20,17 @@ if (sessionStorage['token']){
   styleUrls: ['./view-message.component.scss']
 })
 export class ViewMessageComponent implements OnInit {
-  Post: any=[];
+  Posts: any=[];
   User: any=[];
+  userId: string = id;
   postId: string = '';
   imageName: any;
   retrieveResonse: any;
   base64Data: any;
   retrievedImage: any;
   retrievedImageProfil: any;
+  isAdmin: any = IsAdmin;
+  dateCreat!: any;
   
 
   constructor(private activedRoute: ActivatedRoute, private msgService: AuthMessage, private router: Router,  private http: HttpClient, private sanitizer: DomSanitizer, private user: UserService) { }
@@ -35,16 +42,22 @@ export class ViewMessageComponent implements OnInit {
     });
    
     this.msgService.ViewOneMessage(this.postId).subscribe(data => {
-      this.Post = data;
-      this.http.get('http://localhost:3000/images/' + this.Post[0].imageUrl, {responseType: 'blob'})
+      this.Posts = data;
+      this.http.get('http://localhost:3000/images/' + this.Posts[0].imageUrl, {responseType: 'blob'})
           .subscribe(
             res => {
               this.retrieveResonse = res;
               this.base64Data = URL.createObjectURL(this.retrieveResonse);
               this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data);
             })
+
+            const date = new Date(this.Posts[0].CreatAt)
+            this.dateCreat = date;
+            console.log("voici la date :")
+     console.log()
      });
      this.getImage();
+     
   }
 
   DeleteMessage(){
@@ -59,9 +72,8 @@ export class ViewMessageComponent implements OnInit {
     this.user.getUserList().subscribe(data => {
       this.User = data;
       console.log("ici c'est le bordel")
-      let id = this.Post[0].userId;
+      let id = this.Posts[0].userId;
       const URL = this.User[id].profil_image;
-      console.log("ici l'url"+URL)
         this.http.get(URL, {responseType: 'blob'})
           .subscribe(
             res => {
