@@ -10,6 +10,7 @@ exports.newComment = (req, res, next) => {
     user_id: req.body.user_id,
     post_id: req.body.post_id,
     content: req.body.content,
+    user_name: req.body.user_name,
     CreatAt: new Date()
   }
 
@@ -29,7 +30,7 @@ exports.newComment = (req, res, next) => {
 exports.getCommentsofPost = (req, res, next) => {
   const connection = database.connect();
   const id = req.params.id;
-  connection.query("SELECT * FROM Comments WHERE post_id=?", [id], (error, comments, fields) => {
+  connection.query("SELECT * FROM Comments WHERE post_id=? ORDER BY id DESC", [id], (error, comments, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
