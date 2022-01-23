@@ -46,7 +46,7 @@ textarea[name=monTexte]
 }
 
 .prevtitre {
-    text-align: center;
+    text-align: left;
     vertical-align: middle;
     background: rgb(210, 210, 210);
     border-bottom: #555555 solid 1px;
@@ -54,10 +54,10 @@ textarea[name=monTexte]
     width:100%;
     font-size:17px;
     border-radius: 5px 5px 0px 0px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    padding-bottom: 30px;
+    display: grid;
+    grid-template-areas: "img corp ."
+                         "img corpsub . ";
+    grid-template-columns: 20% 45% 40%;
 }
 
 .prevlib {
@@ -65,13 +65,42 @@ textarea[name=monTexte]
     font-size: 17px;
 }
 
-.emoji-mart {
-    width: 200px;
-    height: 200px;
-    overflow: scroll;
-}
-
 img {
     background-size: cover;
     width: 100%;
+  }
+  
+    
+    .header-image {
+      background-size: cover;
+      clip-path:ellipse(50% 50%);
+      height: 60px;
+      width: 60px;
+      grid-area: img;
+      align-self: center;
+      justify-self: center;
+  
+    }
+  
+  .content {
+      margin:10px;
+      white-space:normal;
+      width:90%
+  }
+  
+  .titleprev {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    grid-area: corpsub;
+  }
+  
+  .nameprev {
+    font-weight: bold;
+    margin: 10px;
+    font-size:17px;
+    grid-area: corp;
+  }
+  
+  .card-img {
+    min-height:100px;
   }
