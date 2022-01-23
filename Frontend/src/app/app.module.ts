@@ -26,7 +26,6 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { CommentService } from './services/comment.services';
-import { CommentComponent } from './messages/commentaire/comment.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: AuthComponent},
@@ -59,7 +58,6 @@ const appRoutes: Routes = [
     FourcentfourComponent,
     DeleteMessageComponent,
     UpdateMessageComponent,
-    CommentComponent,
     ViewMessageComponent
   ],
   imports: [
