@@ -43,10 +43,10 @@
       </p>
     </mat-card-content>
     <div class="container">
-      <form (ngSubmit)="addcomment(a, dataItem.id)" #a="ngForm">
+      <form (ngSubmit)="addcomment(c, dataItem.id)" #c="ngForm">
           <label for="comment">Commentaires</label>
-          <input type="text" class="form-control comment" [(ngModel)]="content" name="comment" required>
-          <button aria-label="Ajouter commentaire" class="btn_ajout btn-success" type="submit" *ngIf="dataItem.id" [disabled]="a.invalid">+</button>
+          <input type="text" class="form-control" [(ngModel)]="contents" name="comment" required>
+          <button aria-label="Ajouter commentaire" class="btn_ajout btn-success" type="submit" [disabled]="c.invalid">+</button>
       </form>
          <div> 
            <button  aria-label="Afficher les commentaires" class="btn_comment btn-primary" *ngIf="!dataItem.commentafficher && dataItem.id" (click)="viewcomment(dataItem.id)">
