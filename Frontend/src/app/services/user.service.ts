@@ -63,4 +63,8 @@ export class UserService {
       getprofil(userId: any) {
         return this.http.get(this.APIUrl+'/users/profil/'+JSON.parse(sessionStorage['token']).userId)
       }
+
+      getOneprofil(userId: any) {
+        return this.http.get(this.APIUrl+'/users/profil/'+userId)
+      }
 }
