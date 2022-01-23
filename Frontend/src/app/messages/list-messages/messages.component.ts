@@ -10,10 +10,12 @@ import { NgForm } from '@angular/forms';
 let id = ''; 
 let token = '';
 let username = '';
+let IsAdmin = 0;
 if (sessionStorage['token']){
     id = JSON.parse(sessionStorage['token']).userId,
     token = JSON.parse(sessionStorage['token']).token,
-    username = JSON.parse(sessionStorage['token']).username
+    username = JSON.parse(sessionStorage['token']).username,
+    IsAdmin = JSON.parse(sessionStorage['token']).IsAdmin
 }
 
 const httpOptions : any    = {
@@ -46,12 +48,13 @@ retrieveResponse: any;
 base64DataProfil: any;
 retrievedImageprofil: any;
 content: any;
-
+Datecreat!: number;
 Comment: any=[];
 commentafficher!: boolean;
 check!: Boolean;
 utilisateurId: any = id;
-
+isAdmin: number = IsAdmin;
+dateCreat!: any;
 
   constructor(
     private login: AuthUser, 
@@ -83,9 +86,8 @@ utilisateurId: any = id;
   ListMessages() {
     this.service.viewMessages().subscribe(data => {
       this.Posts=data;
-      this.dataItem = this.Posts.id;
       this.getImage();  
-      this.ChargeImage();       
+      this.ChargeImage();
       })
     }
 
@@ -155,6 +157,8 @@ for(let i = 0; i < this.Posts.length; i++) {
   } else {
     this.Posts[i].commentafficher = false;
   }
+  const date = new Date(this.Comment[i].CreatAt)
+  this.dateCreat = date;
 }
 
 }
