@@ -96,10 +96,11 @@ textarea[name=monTexte]
 .title {
   font-weight: bold;
   margin-left: 80px;
+  margin-top:0px;
 }
 
 .subtitle {
-  margin-left:-35px;
+  margin-left:-47px;
   margin-top:30px;
 }
 
@@ -118,4 +119,8 @@ button {
 
 .text-center {
     margin:20px;
+}
+
+h3 {
+  font-size: 15px
 }
