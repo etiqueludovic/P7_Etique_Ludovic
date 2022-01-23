@@ -34,6 +34,7 @@ export class loginComponent implements OnInit {
   userId!: any;
 
     isAuth!: boolean;
+  error!: string;
     constructor(private router: Router, private connectionService: UserService, private authUser: AuthUser) { }
     
     ngOnInit() {
@@ -61,8 +62,11 @@ export class loginComponent implements OnInit {
             sessionStorage.setItem('token', JSON.stringify(data))
             console.log('connexion réussi !');
             location.reload()
-          }
-        )
+          },
+          (error: any) => {
+            this.error = error.error.error
+          })
+          
       }
 
     onSignOut() {
