@@ -15,7 +15,7 @@
                 <label for="email">Adresse Email</label>
                 <div *ngIf="!modif_e" class="email" name="email">{{profil.email}}</div>
                 <input *ngIf="modif_e" type="email" class="email" name="email" [(ngModel)]="email" required>
-                <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_e" (click)="UpdateOn_e()">Modifier</button> 
+                <button class="btn-modif"  class="btn btn-primary" *ngIf="userId == profil.userId && !modif_e" (click)="UpdateOn_e()">Modifier</button> 
                 <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_e">Enregistrer</button>
                 <button type="button" (click)="Cancel()" *ngIf="modif_e">Annuler</button>
             </form>
