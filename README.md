@@ -3,6 +3,7 @@
 # Projet 7 OpenClassRoom
 
 Cloner le git
+Faire le code suivant dans un terminal pour le dossier principal afin d'installer le module "concurrently"
 
 ```bash
   npm run install
@@ -47,7 +48,7 @@ contraintes de clé étrangère pour "messages" : en CACASDE profil_image sur ta
 
 # Lancement
 
-Une fois l'installation compléte faire
+Une fois l'installation compléte, retourner dnas le dossier principal
 ```bash
   npm start
 ```
