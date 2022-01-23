@@ -24,7 +24,7 @@ exports.newuser = (req, res, next) => {
           connection.query('INSERT INTO user SET ?', [newUser], (error, results, fields) => {
             if (error) {
               if (error.errno === 1062) { // ERREUR : email déjà utilisé dans la base
-                res.status(403).json({ "error": "L'email est déjà utilisé !" });
+                res.status(403).json({ "error": "L'email ou nom d'utilisateur déjà utilisé !" });
               } else { // Autre erreur SQL
                 res.status(500).json({ "error": error.sqlMessage });
               }
@@ -76,6 +76,7 @@ exports.login = (req, res, next) => {
             username: results[0].username,
             profil_image: results[0].profil_image,
             bio: results[0].bio,
+            IsAdmin: results[0].isAdmin,
             token: newToken
           });
         })
@@ -105,7 +106,8 @@ exports.getProfil = (req, res, next) => {
         username: results[0].username,
         email: results[0].email,
         profil_image: results[0].profil_image,
-        bio: results[0].bio
+        bio: results[0].bio,
+        IsAdmin: results[0].isAdmin
       });
     }
   });
