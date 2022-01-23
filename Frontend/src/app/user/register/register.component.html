@@ -21,10 +21,8 @@
                     <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="password" name="password" required>
                     <label for="password">Mot de passe</label>
                     </div>
-                    <div *ngFor="let dataItem of UserList">
-                    <input *ngIf="email == dataItem.email" id="verif" value="Email existant">
-                    </div>
                     <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+                    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
                 </form>
         </div>
     </div>
