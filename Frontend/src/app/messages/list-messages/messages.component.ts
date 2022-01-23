@@ -47,7 +47,7 @@ image=[];
 retrieveResponse: any;
 base64DataProfil: any;
 retrievedImageprofil: any;
-content: any;
+@Input() contents!: String;
 Datecreat!: number;
 Comment: any=[];
 commentafficher!: boolean;
@@ -127,15 +127,17 @@ dateCreat!: any;
     addcomment(form: NgForm, postid: number) {    
       this.service.viewMessages().subscribe(data_m =>{
       this.Posts = data_m
+      console.log(form.value)
       const comment = {
-          content: form.value.content,
-          post_id: postid,
-          user_name: this.username,
-          user_id: this.utilisateurId
+          'post_id': postid,
+          'user_name': this.username,
+          'user_id': this.utilisateurId,
+          'content': form.value.comment,
       }
       this.commentservice.addComment(comment)
       .subscribe(() => {
           console.log("commentaire créé !")
+          location.reload();
       })
     })
 }
@@ -157,8 +159,6 @@ for(let i = 0; i < this.Posts.length; i++) {
   } else {
     this.Posts[i].commentafficher = false;
   }
-  const date = new Date(this.Comment[i].CreatAt)
-  this.dateCreat = date;
 }
 
 }
