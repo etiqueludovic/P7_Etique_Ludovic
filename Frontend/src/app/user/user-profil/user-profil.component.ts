@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 
-let token = ''; 
+let userId = ''; 
 if (sessionStorage['token']){
-    token = JSON.parse(sessionStorage['token']).userId
+    userId = JSON.parse(sessionStorage['token']).userId
 }
 
 @Component({
@@ -31,9 +32,10 @@ export class ProfilComponent implements OnInit {
   modif_u!: boolean;
   modif_b!: boolean;
   modif_p!: boolean;
-  userId =  token;
+  userId =  userId;
+  idUrl !: any;
 
-  constructor(private userService: UserService, private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private userService: UserService, private http: HttpClient, private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.UserProfil();
@@ -42,12 +44,6 @@ export class ProfilComponent implements OnInit {
   UserProfil(){
     this.userService.getprofil(JSON.parse(sessionStorage['token']).userId).subscribe(data => {
       this.Profil = [data];     
-     /* this.http.get('http://localhost:3000/images/' + this.Profil[0].Profil_image, {responseType: 'blob'})
-      .subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = URL.createObjectURL(this.retrieveResonse);
-          this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data);*/
           this.http.get(this.Profil[0].profil_image, {responseType: 'blob'})
             .subscribe((res) => {
               this.retrieveResonse = res;
@@ -103,7 +99,7 @@ export class ProfilComponent implements OnInit {
 
   UpdateUsername(form: NgForm) {
     const username = {
-      'userId': 't',
+      'userId': this.userId,
       'username': form.value.username
     }
     this.userService.updateUsername(username)
