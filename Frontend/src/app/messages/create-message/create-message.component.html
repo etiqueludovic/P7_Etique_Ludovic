@@ -2,9 +2,9 @@
     <div class="col-sm-8 col-sm-offset-2 complet">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <li class="list-group-item">
-            <label for="Title">Titre</label>
+            <label for="title">Titre</label>
             <input type="text" class="form-control" [(ngModel)]="title" name="title" required>
-            <label for="Message">Message</label>
+            <label for="content">Message</label>
             <textarea type="text" class="form-control" [(ngModel)]="content" name="content" required></textarea>
             <button (click) ="toggleEmojiPicker()">😀</button><br>
         <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Choisissez votre emoji…"> </emoji-mart>
