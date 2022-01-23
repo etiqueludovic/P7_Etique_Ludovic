@@ -20,6 +20,7 @@ exports.newMessages = (req, res, next) => {
     content: req.body.content,
     title: req.body.title,
     username: req.body.username,
+    profil_image: req.body.profil_image,
     CreatAt: new Date()
   }
 
@@ -32,6 +33,7 @@ exports.newMessages = (req, res, next) => {
   });
 }
 
+// récupére les informations dans mySql de toutes les publications dans l'ordre inverse
 exports.getMessages = (req, res, next) => {
   connection.query("SELECT * FROM messages ORDER BY id DESC", (err, rows, fields) => {
     if(!err)
@@ -41,18 +43,19 @@ exports.getMessages = (req, res, next) => {
     })
   }
 
+  // Supprime une publication dans mySql grâce à l'id
 exports.deleteMessage = (req, res, next) => {
-  const postId = req.body.postId;
+  const postId = req.params.id;
   connection.query('DELETE FROM messages WHERE id = ?', [postId], (err, rows, fields) => {
     if(!err)
-    res.send('Supprimé avec succès !');
+    res.send('Supprimer avec succès !');
     else
     console.log(err)
     })
   }
 
+  // Récupére une publication dans mySql et renvoie toutes ces informations au frontend
 exports.getOneMessages = (req, res, next) => {
-  const postId = req.body.postId
   connection.query('SELECT * FROM messages WHERE id= ?', [req.params.id], (err, rows, fields) => {
     if(!err)
     res.send(rows);
@@ -61,6 +64,7 @@ exports.getOneMessages = (req, res, next) => {
     })
   }
 
+// met à jour le titre de la publication dans mySql
 exports.updateTitleMessages = (req, res, next) => {
       const id = req.body.postId;
       const title = req.body.title;
@@ -68,23 +72,25 @@ exports.updateTitleMessages = (req, res, next) => {
       if (error) {
         res.status(500).json({ "error": error.sqlMessage });
       } else {
-        res.status(200).json({ message: 'Titre mise à jour' });
+        res.status(200).json({ message: 'Titre mis à jour' });
       }
     });
   }
 
+// met à jour le message dans mySql
   exports.updateContentMessages = (req, res, next) => {
     const id = req.body.postId;
     const content = req.body.content;
-    connection.query('UPDATE messages SET title=? WHERE id= ?', [content, id], (error, results, fields) => {
+    connection.query('UPDATE messages SET content=? WHERE id= ?', [content, id], (error, results, fields) => {
       if (error) {
         res.status(500).json({ "error": error.sqlMessage });
       } else {
-        res.status(200).json({ message: 'Content mise à jour' });
+        res.status(200).json({ message: 'Message mis à jour' });
       }
     });
   }
 
+  // met à jour l'image dans mySql
   exports.updateFileMessages = (req, res, next) => {
     const id = req.body.postId;
     const imageUrl = req.body.imageUrl;
@@ -92,7 +98,7 @@ exports.updateTitleMessages = (req, res, next) => {
       if (error) {
         res.status(500).json({ "error": error.sqlMessage });
       } else {
-        res.status(200).json({ message: 'Content mise à jour' });
+        res.status(200).json({ message: 'Image mise à jour' });
       }
     });
   }
