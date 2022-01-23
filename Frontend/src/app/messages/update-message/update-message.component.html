@@ -2,16 +2,16 @@
     <div class="col-sm-8 complet">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <li class="list-group-item" >
-            <label for="Title">Titre</label>
-            <div *ngIf="!modif_t" class="form-control" name="title">{{ dataItem.title }}</div>
-            <input *ngIf="modif_t" type="text" class="form-control" [(ngModel)]="title" name="title" required>
-            <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_t" (click)="UpdateOn_t()">Modifier</button> 
-            <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_t">Enregistrer</button>
-            <button type="button" (click)="Cancel_t()" *ngIf="modif_t">Annuler</button>
-            <label for="Message">Message</label>
-            <div *ngIf="!modif_c" class="form-control" name="content">{{ dataItem.content }}</div>
-            <textarea *ngIf="modif_c" type="text" class="form-control" [(ngModel)]="content" name="content" required></textarea>
-            <button (click) ="toggleEmojiPicker()">😀</button><br>
+            <label for="title">Titre</label>
+                <div *ngIf="!modif_t" class="form-control" name="title">{{ dataItem.title }}</div>
+                <input *ngIf="modif_t" type="text" class="form-control" [(ngModel)]="title" name="title" required>
+                <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_t" (click)="UpdateOn_t()">Modifier</button> 
+                <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_t">Enregistrer</button>
+                <button type="button" (click)="Cancel_t()" *ngIf="modif_t">Annuler</button><br>
+            <label for="content">Message</label>
+                <div *ngIf="!modif_c" class="form-control" name="content">{{ dataItem.content }}</div>
+                <textarea *ngIf="modif_c" type="text" class="form-control" [(ngModel)]="content" name="content" required></textarea>
+                <button (click) ="toggleEmojiPicker()">😀</button><br>
         <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Choisissez votre emoji…"> </emoji-mart>
         <button class="btn-modif"  class="btn btn-primary" *ngIf="!modif_c" (click)="UpdateOn_c()">Modifier</button> 
         <button  type="submit" class="btn-modif"  class="btn btn-primary" *ngIf="modif_c">Enregistrer</button>
@@ -19,10 +19,10 @@
         </li>
         <div class="container">
             <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="offset-md-3 upload">
                 <h3>Insérer une image</h3>            
                 <div class="form-group">
-                        <input type="file" name="file" (change)="fileProgress($event)" />
+                        <input aria-label="Bouton Insérer une image" type="file" name="file" (change)="fileProgress($event)" />
                     </div>
                     <div *ngIf="fileUploadProgress">
                         Upload progress: {{ fileUploadProgress }}
@@ -45,8 +45,8 @@
            
             <div class="card-header">
                 <div>
-                    <img *ngIf="dataItem.profil_image" class="header-image" [src]="dataItem.retrievedImageprofil">
-                    <svg *ngIf="!dataItem.profil_image" xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-square header-image" viewBox="0 0 16 16">
+                    <img aria-label="image du profil" *ngIf="dataItem.profil_image" class="header-image" [src]="dataItem.retrievedImageprofil">
+                    <svg aria-label="Le profil n'a pas d'image" *ngIf="!dataItem.profil_image" xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-square header-image" viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                       <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
                       </svg>
@@ -55,7 +55,7 @@
                 <mat-card-subtitle *ngIf="!modif_t" class="subtitle" name="PreviousTitre">{{ dataItem.title }}</mat-card-subtitle>
                 <mat-card-subtitle *ngIf="modif_t" class="subtitle" name="PreviousTitre">{{ title }}</mat-card-subtitle>
             </div>
-                <img [src]="previewUrl" height="300" />  
+                <img aria-label="prévisualisation de l'image" [src]="previewUrl" height="300" />  
                 <div class="image-preview mb-3" *ngIf="previewUrl"></div>
                 <div *ngIf="!modif_c" class="text-center" name="PreviousMessage">{{ dataItem.content }}</div>
                 <div *ngIf="modif_c" class="text-center" name="PreviousMessage">{{ content }}</div>
