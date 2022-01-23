@@ -6,8 +6,6 @@
             <input type="text" class="form-control" [(ngModel)]="title" name="title" required>
             <label for="content">Message</label>
             <textarea type="text" class="form-control" [(ngModel)]="content" name="content" required></textarea>
-            <button (click) ="toggleEmojiPicker()">😀</button><br>
-        <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Choisissez votre emoji…"> </emoji-mart>
         </li>
         <div class="container">
             <div class="row">
@@ -34,14 +32,14 @@
                  <label for="PreviousTitre">Prévisualisation du Message</label>
             </div>
         <div class="prev">
-            <div class="text-center prevtitre">
+            <div class="prevtitre">
                 <div mat-card-avatar class="example-header-image"></div>
-                <div class="text-center" name="PreviousTitre">{{ title }}</div>
-                <div class="text-center" name="PreviousTitre" *ngIf="username">{{ username }}</div>
+                <div class="nameprev" name="PreviousTitre">{{ username }}</div>
+                <div class="titleprev" name="PreviousTitre">{{ title }}</div>
             </div>
                 <img [src]="previewUrl" height="300" />  
                 <div class="image-preview mb-3" *ngIf="previewUrl"></div>
-                <div class="text-center" name="PreviousMessage">{{ content }}</div>
+                <div class="text-center content" name="PreviousMessage">{{ content }}</div>
                 
         </div>               
     </div>
