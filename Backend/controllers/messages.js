@@ -33,7 +33,7 @@ exports.newMessages = (req, res, next) => {
 }
 
 exports.getMessages = (req, res, next) => {
-  connection.query("SELECT * FROM messages", (err, rows, fields) => {
+  connection.query("SELECT * FROM messages ORDER BY id DESC", (err, rows, fields) => {
     if(!err)
     res.send(rows);
     else
