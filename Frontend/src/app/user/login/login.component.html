@@ -19,6 +19,7 @@
                 </div>
 
                 <button class="btn btn-primary" *ngIf="!isAuth" type="submit" [disabled]="g.invalid">Connexion</button>
+                <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
                 <button class="btn btn-danger" *ngIf="isAuth" (click)="onSignOut()">
                     Se Déconnecter
                 </button>
