@@ -33,7 +33,7 @@ Dans un terminal
 
 # mySql
 
-Voir dans le dossier migration pour voir la structure.
+Voir dans le dossier backend/migrations pour voir la structure.
 Chaque table doit être en InnoDB.
 
 contraintes de clé étrangère pour "comments" : en CACASDE post_id sur table messages colonne id
