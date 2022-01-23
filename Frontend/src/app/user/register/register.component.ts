@@ -29,6 +29,7 @@ export class AuthComponent implements OnInit {
   @Input() verif: boolean | undefined;
 
     authStatus!: Boolean;
+  error: any;
     constructor(private router: Router, private connectionService: UserService) { }
 
     ngOnInit(): void { }
@@ -45,6 +46,9 @@ export class AuthComponent implements OnInit {
     .subscribe(() => {
       console.log('Enregistré !');
       this.router.navigate(['login']);
+      },
+      (error) => {
+        this.error = error.error.error
       }) 
     }
 
