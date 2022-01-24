@@ -243,9 +243,6 @@ exports.changebio = (req, res, next) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
-      console.log("ici la réponse de l'update")
-      console.log([username, id])
-      console.log(res)
       res.status(201).json({ message: 'Username du profil modifiée' });
     }
   });
@@ -258,7 +255,7 @@ exports.deleteAccount = (req, res, next) => {
   const userId = req.params.id;
   const sql = "DELETE FROM user WHERE id=?";
   const sqlParams = [userId];
-  connection.execute(sql, sqlParams, (error, results, fields) => {
+  connection.query(sql, sqlParams, (error, results, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
@@ -274,13 +271,7 @@ exports.deleteAccount = (req, res, next) => {
 exports.getAllPostsOfUser = (req, res, next) => {
   // 1: récupération de tous les posts
   const userId = req.params.id;
-  const sql = "SELECT Posts.id AS postId, Posts.publication_date AS postDate, Posts.imageurl AS postImage, Posts.content as postContent, Users.id AS userId, Users.name AS userName, Users.profil_image AS userPicture\
-  FROM Posts\
-  INNER JOIN Users ON Posts.user_id = Users.id\
-  WHERE Posts.user_id = ?\
-  ORDER BY postDate DESC;";
-  const sqlParams = [userId];
-  connection.execute(sql, sqlParams, (error, rawPosts, fields) => {
+  connection.execute("SELECT * FROM Posts WHERE userId = ? ORDER BY postDate DESC", [userId], (error, rawPosts, fields) => {
     if (error) {
       connection.end();
       res.status(500).json({ "error": error.sqlMessage });
