@@ -39,7 +39,10 @@ const appRoutes: Routes = [
         { path: 'view/:id', component: ViewMessageComponent }
   ]},
   { path: 'create-message',canActivate: [AuthGuard], component: CreateMessageComponent},
-  { path: 'user-profil/:id', canActivate: [AuthGuard], component: ProfilComponent},
+  { path: 'user-profil',
+      children: [
+        { path: ':id', canActivate: [AuthGuard], component: ProfilComponent},
+  ]},
   { path: '', component: MessagesComponent},
   { path: 'not-found', component: FourcentfourComponent},
   { path: '**', redirectTo: '/not-found'}
