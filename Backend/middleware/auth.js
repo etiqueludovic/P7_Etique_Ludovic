@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
     if (req.body.userId && req.body.userId !== userId) {
       throw 'Invalid user ID';
     } else {
-      console.log("youpi c'est passé")
+      console.log("Token validé")
       next();
     }
   } catch {
