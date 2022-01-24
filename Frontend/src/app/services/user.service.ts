@@ -56,8 +56,8 @@ export class UserService {
         return this.http.put(this.APIUrl+'/users/'+JSON.parse(sessionStorage['token']).userId+'/profil_image', profil_image, httpOptions);
       }
     
-      deleteUser(user: User){
-        return this.http.delete(this.APIUrl+'/users/delete/'+JSON.parse(sessionStorage['token']).userId, httpOptions);
+      deleteUser(userId: any){
+        return this.http.delete(this.APIUrl+'/users/delete/'+userId, httpOptions);
       }
 
       getprofil(userId: any) {
