@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 
@@ -34,8 +34,9 @@ export class ProfilComponent implements OnInit {
   modif_p!: boolean;
   userId =  userId;
   idUrl !: any;
+  error: any;
 
-  constructor(private userService: UserService, private http: HttpClient, private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private http: HttpClient, private sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
     this.UserProfil();
@@ -143,6 +144,16 @@ export class ProfilComponent implements OnInit {
     this.http.post('http://localhost:3000/images', fd)
     .subscribe(res => {
       console.log(res)
+    })
+  }
+
+  DeleteAccount() {
+    this.userId = this.Profil[0].userId
+    this.userService.deleteUser(this.userId).subscribe(() => {
+      console.log("compte supprimé !!")
+      sessionStorage.clear();
+      this.router.navigate(['register']);
+      location.reload();
     })
   }
   
