@@ -2,7 +2,7 @@
 
 # Projet 7 OpenClassRoom
 
-Cloner le git
+Cloner le git\
 Faire le code suivant dans un terminal pour le dossier principal afin d'installer le module "concurrently"
 
 ```bash
@@ -32,24 +32,27 @@ Dans un terminal
   npm install
 ```
 
+# Base de données
+
+Remplacer les informations de la base de données dans le Backend/config/.env
+
+DB_BASE=projet7\
+DB_USER=root\
+DB_PASS=password de la DB\
+DB_HOST=localhost\
+PORT=3000\
+JWT_KEY='jwebtoken_clé_complexe'\
+CRYPT_USER_INFO='double_sécurisation_des_infos'\
+
 # mySql
 
-Voir dans le dossier backend/migrations pour voir la structure.
-Chaque table doit être en InnoDB.
-
-contraintes de clé étrangère pour "comments" : en CACASDE post_id sur table messages colonne id
-contraintes de clé étrangère pour "comments" : en CACASDE user_name sur table user colonne username
-
-
-contraintes de clé étrangère pour "messages" : en CACASDE userId sur table user colonne id
-contraintes de clé étrangère pour "messages" : en CACASDE username sur table user colonne username
-contraintes de clé étrangère pour "messages" : en CACASDE profil_image sur table user colonne profil_image
+Récupérer "projet7.sql" et l'importer dans MySql.
 
 
 # Lancement
 
-Une fois l'installation compléte, retourner dnas le dossier principal
+Une fois l'installation compléte, retourner dans le dossier principal
 ```bash
   npm start
 ```
-Le frontend et le backendce lancerons en même temps.
+Le frontend et le backend ce lancerons en même temps.
