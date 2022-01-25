@@ -46,7 +46,7 @@ CRYPT_USER_INFO='double_sécurisation_des_infos'\
 
 # mySql
 
-Récupérer "projet7.sql.zip" l'importer dans MySql.
+Récupérer "projet7.sql" et l'importer dans MySql.
 
 
 # Lancement
