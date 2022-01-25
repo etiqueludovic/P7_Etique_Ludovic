@@ -45,7 +45,7 @@
     <div class="container">
       <form (ngSubmit)="addcomment(c, dataItem.id)" #c="ngForm">
           <label for="comment">Commentaires</label>
-          <input type="text" class="form-control" [(ngModel)]="contents" name="comment" required>
+          <input type="text" class="form-control" [(ngModel)]="contents" name="comment" placeholder="Vous pouvez vous exprimer ici" required>
           <button aria-label="Ajouter commentaire" class="btn_ajout btn-success" type="submit" [disabled]="c.invalid">+</button>
       </form>
          <div> 
