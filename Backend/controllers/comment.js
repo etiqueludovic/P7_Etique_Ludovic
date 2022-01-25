@@ -14,7 +14,7 @@ exports.newComment = (req, res, next) => {
     CreatAt: new Date()
   }
 
-  connection.query("INSERT INTO Comments SET ?", [newComment], (error, results, fields) => {
+  connection.query("INSERT INTO comments SET ?", [newComment], (error, results, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
@@ -30,7 +30,7 @@ exports.newComment = (req, res, next) => {
 exports.getCommentsofPost = (req, res, next) => {
   const connection = database.connect();
   const id = req.params.id;
-  connection.query("SELECT * FROM Comments WHERE post_id=? ORDER BY id DESC", [id], (error, comments, fields) => {
+  connection.query("SELECT * FROM comments WHERE post_id=? ORDER BY id DESC", [id], (error, comments, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
@@ -41,7 +41,7 @@ exports.getCommentsofPost = (req, res, next) => {
 
 exports.getCommentAllPosts = (req, res, next) => {
   const connection = database.connect();
-  connection.query("SELECT * FROM Comments", (error, comments, fields) => {
+  connection.query("SELECT * FROM comments", (error, comments, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
@@ -56,7 +56,7 @@ exports.getCommentAllPosts = (req, res, next) => {
 exports.deleteComment = (req, res, next) => {
   const connection = database.connect();
   const commentId = parseInt(req.params.id, 10);
-  connection.query("DELETE FROM Comments WHERE id=?", [commentId], (error, results, fields) => {
+  connection.query("DELETE FROM comments WHERE id=?", [commentId], (error, results, fields) => {
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
     } else {
