@@ -2,7 +2,7 @@
 
 # Projet 7 OpenClassRoom
 
-Cloner le git
+Cloner le git\
 Faire le code suivant dans un terminal pour le dossier principal afin d'installer le module "concurrently"
 
 ```bash
