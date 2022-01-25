@@ -7,15 +7,25 @@ const Joi = require('joi');
 
 // Lors de la création d'un nouvel utilisateur
 const newUserSchema = Joi.object({
-  username: Joi.string().trim().required(),
+  username: Joi.string().trim().min(3).required(),
   email: Joi.string().trim().email().required(),
   password: Joi.string().trim().min(8).required()
 });
 exports.newUser = (req, res, next) => {
   const {error, value} = newUserSchema.validate(req.body);
   if (error) {
-    res.status(422).json({ error: "Données saisies invalides" });
-  } else {
+    if (error.details[0].path == "email") {
+      res.status(422).json({ error: "Email incorrect !" });
+    }
+    if (error.details[0].path == "username") {
+      res.status(422).json({ error: "Nom d'utilisateur incorrect !" });
+    }
+    if (error.details[0].path == "password") {
+      res.status(422).json({ error: "Mot de passe doit avoir 8 caractères minimum !" });
+    }
+     
+  }
+  else {
     next();
   }
 };
@@ -28,7 +38,12 @@ const loginSchema = Joi.object({
 exports.login = (req, res, next) => {
   const {error, value} = loginSchema.validate(req.body);
   if (error) {
-    res.status(422).json({ error: "email ou mot de passe invalide" });
+    if (error.details[0].path == "email") {
+      res.status(422).json({ error: "Email incorrect !" });
+    }
+    if (error.details[0].path == "password") {
+      res.status(422).json({ error: "Mot de passe incorrect !" });
+    }
   } else {
     next();
   }
@@ -103,7 +118,7 @@ exports.postContent = (req, res, next) => {
   }
 };
 
-// Lors de la récupération d'un partie des publications
+// Lors de la récupération d'une partie des publications
 const getPostsSchema = Joi.object({
   limit: Joi.number().integer().positive().required(),
   offset: Joi.number().integer().min(0).required()
