@@ -50,11 +50,9 @@ export class ViewMessageComponent implements OnInit {
               this.base64Data = URL.createObjectURL(this.retrieveResonse);
               this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data);
             })
-
             const date = new Date(this.Posts[0].CreatAt)
             this.dateCreat = date;
-            console.log("voici la date :")
-     console.log()
+    
      });
      this.getImage();
      
@@ -62,7 +60,7 @@ export class ViewMessageComponent implements OnInit {
 
   DeleteMessage(){
       if (this.postId == JSON.parse(sessionStorage['token']).id){
-      this.msgService.deleteMessage(this.postId).subscribe(data => {
+      this.msgService.deleteMessage(this.postId).subscribe(() => {
       this.router.navigate(['/delete']);
       });
     }
