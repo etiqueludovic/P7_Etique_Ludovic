@@ -51,8 +51,8 @@ Récupérer "projet7.sql" et l'importer dans MySql.
 
 # Lancement
 
-Une fois l'installation compléte, retourner dnas le dossier principal
+Une fois l'installation compléte, retourner dans le dossier principal
 ```bash
   npm start
 ```
-Le frontend et le backendce lancerons en même temps.
+Le frontend et le backend ce lancerons en même temps.
