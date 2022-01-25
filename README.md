@@ -34,16 +34,7 @@ Dans un terminal
 
 # mySql
 
-Voir dans le dossier backend/migrations pour voir la structure.
-Chaque table doit être en InnoDB.
-
-contraintes de clé étrangère pour "comments" : en CACASDE post_id sur table messages colonne id
-contraintes de clé étrangère pour "comments" : en CACASDE user_name sur table user colonne username
-
-
-contraintes de clé étrangère pour "messages" : en CACASDE userId sur table user colonne id
-contraintes de clé étrangère pour "messages" : en CACASDE username sur table user colonne username
-contraintes de clé étrangère pour "messages" : en CACASDE profil_image sur table user colonne profil_image
+Récupérer "projet7.sql.zip" l'importer dans MySql.
 
 
 # Lancement
