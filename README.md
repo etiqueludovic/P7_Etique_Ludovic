@@ -6,7 +6,7 @@ Cloner le git
 Faire le code suivant dans un terminal pour le dossier principal afin d'installer le module "concurrently"
 
 ```bash
-  npm run install
+  npm install
 ```
 
 # Front End
@@ -17,7 +17,7 @@ Dans un terminal
   cd frontend
 ```
 ```bash
-  npm run install
+  npm install
 ```
 
 
@@ -29,7 +29,7 @@ Dans un terminal
   cd backend
 ```
 ```bash
-  npm run install
+  npm install
 ```
 
 # mySql
