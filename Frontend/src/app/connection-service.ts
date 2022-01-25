@@ -19,9 +19,5 @@ export class connectionService {
   getServer() {
     return this.http.get(this.APIUrl, {responseType: 'text'});
   }
-
-  CreateMessage(val: any){
-    return this.http.post(this.APIUrl+'/message/new/', val, {responseType: 'text'});
-  }
   
 }
