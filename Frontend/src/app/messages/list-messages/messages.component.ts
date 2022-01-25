@@ -108,7 +108,8 @@ dateCreat!: any;
      this.messageId = data['id'];
    })
    if (this.messageId)
-   this.service.deleteMessage(this.messageId).subscribe(data => {
+   this.service.deleteMessage(this.messageId).subscribe(() => {
+     location.reload();
    })
   }
 
@@ -167,6 +168,7 @@ deletecomment(id: Number) {
   for (let i = 0; i < this.Comment.length; i++) {
       this.commentservice.deleteComment(id).subscribe(data => {
           console.log(data)
+          location.reload();
         });
         break;
 }
