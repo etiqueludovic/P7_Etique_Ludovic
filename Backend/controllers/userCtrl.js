@@ -132,7 +132,7 @@ exports.getAllUsers = (req, res, next) => {
 exports.getOneUser = (req, res, next) => {
   const searchId = req.params.id;
   const sqlParams = [searchId];
-  connection.execute("SELECT * FROM user WHERE id=?", sqlParams, (error, results, fields) => {
+  connection.query("SELECT * FROM user WHERE id=?", sqlParams, (error, results, fields) => {
     // SI : erreur SQL
     if (error) {
       res.status(500).json({ "error": error.sqlMessage });
