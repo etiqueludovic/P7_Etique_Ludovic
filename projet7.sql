@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `projet7`
 --
-CREATE DATABASE IF NOT EXISTS `projet7` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `projet7` DEFAULT CHARACTER SET utf8mb4;
 USE `projet7`;
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`id`),
   KEY `post_id` (`post_id`),
   KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `comments`
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `userId` (`userId`),
   KEY `username` (`username`),
   KEY `profil_image` (`profil_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Déchargement des données de la table `messages`
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `Profil_image` (`profil_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
