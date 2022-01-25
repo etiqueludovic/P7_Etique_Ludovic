@@ -4,6 +4,9 @@
     justify-content:center;
     width: 350px;
     background:white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 5px #555555;
+    border: 1px solid;
 }
 
 .log-nav {
@@ -11,9 +14,13 @@
 }
 
 .form-floating {
-    margin:15px;
+    margin: 15px;
 }
 
 button {
-    margin: 10px
+    margin: 10px;
 }
+
+.nav-item {
+    width: 50%;
+ }
