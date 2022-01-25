@@ -31,7 +31,6 @@ export class CreateMessageComponent implements OnInit {
   previewUrl:any = null;
   fileUploadProgress!: string;
   uploadedFilePath!: string;
-  emojiForm: any;
   username: string = Username;
   image_profil: string = Imageprofil;
   userId: number = userId;
@@ -113,33 +112,6 @@ export class CreateMessageComponent implements OnInit {
       })
     })
     
-  }
-
-  // Ajouter un emoji au texte du message
-  
-  showEmojiPicker = false;
-  toggleEmojiPicker() {
-    console.log(this.showEmojiPicker);
-        this.showEmojiPicker = !this.showEmojiPicker;
-  }
-
-  addEmoji(event: { emoji: { native: any; }; }) {
-    console.log(this.content)
-    const { content } = this;
-    console.log(content);
-    console.log(`${event.emoji.native}`)
-    const text = `${content}${event.emoji.native}`;
-
-    this.content = text;
-    // this.showEmojiPicker = false;
-  }
-
-  onFocus() {
-    console.log('focus');
-    this.showEmojiPicker = false;
-  }
-  onBlur() {
-    console.log('onblur')
   }
 
     
