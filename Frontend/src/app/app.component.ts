@@ -56,46 +56,10 @@ export class AppComponent {
     retrieveResonse!: Blob;
     base64Data!: string;
     retrievedImage: any;
-    /*newForm =  () => {
-      this.userForm = this.fb.group({
-        photo         : ['', Validators.compose([Validators.required])]
-      })
-    }
-  
-    PostData() {
-      this.submitted = true;
-      if(!this.userForm.valid) {
-         false;
-      }
-      if (this.userForm.get('photo').invalid) {
-         this.isPhotoError = true;
-      }
-      this.uploadError = '';
-      const formData = new FormData();
-      formData.append('photo', this.userForm.get('photo').value);
-      this.http.post('http://localhost:3000/upload', formData).subscribe((resp: any) => {
-        if(resp['status'] == 'success') {
-           alert('File saved in file-upload-server/uploads');
-        }
-      });
-  
-  
-    }
-  
-    onFileSelect(file: Event) {
-      this.userForm.patchValue({ photo: file });
-      this.userForm.get('photo').updateValueAndValidity();
-    }*/
 
     UserProfilComp(){
       this.userService.getprofil(JSON.parse(sessionStorage['token']).userId).subscribe(data => {
         this.Profil = [data];     
-       /* this.http.get('http://localhost:3000/images/' + this.Profil[0].Profil_image, {responseType: 'blob'})
-        .subscribe(
-          res => {
-            this.retrieveResonse = res;
-            this.base64Data = URL.createObjectURL(this.retrieveResonse);
-            this.retrievedImage = this.sanitizer.bypassSecurityTrustUrl(this.base64Data);*/
             this.http.get(this.Profil[0].profil_image, {responseType: 'blob'})
               .subscribe((res) => {
                 this.retrieveResonse = res;
