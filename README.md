@@ -53,3 +53,13 @@ Une fois l'installation compléte, retourner dans le dossier principal
   npm start
 ```
 Le frontend et le backend ce lancerons en même temps.
+
+
+# Compte administrateur
+
+Un compte admin a été mis en place pour gérer les publications.
+
+```bash
+  Email : charge@com.fr
+  Mdp : charge@com
+```
